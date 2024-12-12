@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      rel="shortcut icon"
+      href="./icons/sketchbook-svgrepo-com.svg
+    "
+      type="image/x-icon"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
       integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
@@ -17,7 +23,32 @@
     <div class="options-container">
       <i class="fa-solid fa-bars"></i>
     </div>
-    <div class="tools-container"></div>
+    <div class="tools-container">
+      <img src="./icons/pencil-svgrepo-com.svg" alt="pencil-icon" />
+      <img src="./icons/eraser-svgrepo-com.svg" alt=eraser-icon" />
+      <img src="./icons/download-svgrepo-com.svg" alt="download-icon" />
+      <img src="./icons/add-image-svgrepo-com.svg" alt="add-image-icon" />
+      <img src="./icons/notes-note-svgrepo-com.svg" alt="note-icon" />
+      <img src="./icons/redo-xs-svgrepo-com.svg" alt="redo-icon" />
+      <img src="./icons/undo-xs-svgrepo-com.svg" alt="undo-icon" />
+    </div>
+
+    <div class="pencil-tool-container">
+      <div class="pencil-width-container">
+        <input type="range" min="2" max="10" value="3" />
+      </div>
+      <div class="pencil-color-container">
+        <div class="black pencil-color"></div>
+        <div class="red pencil-color"></div>
+        <div class="blue pencil-color"></div>
+      </div>
+    </div>
+
+    <div class="eraser-tool-container">
+      <div class="eraser-width-container">
+        <input type="range" min="2" max="10" value="3" />
+      </div>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>
