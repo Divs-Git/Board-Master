@@ -10,7 +10,7 @@ body {
 .options-container {
   height: 4rem;
   width: 4rem;
-  background-color: #d1d8e0;
+  background-color: #e3e6ea;
   position: absolute;
   top: 1rem;
   left: 2rem;
@@ -20,4 +20,102 @@ body {
   border-radius: 50%;
   font-size: 1.5rem;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+}
+
+.tools-container {
+  display: none;
+  justify-content: space-around;
+  height: 4rem;
+  width: 45vw;
+  background-color: #e3e6ea;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  position: absolute;
+  border-radius: 20px;
+  top: 1rem;
+  left: 30vw;
+}
+
+.tools-container > * {
+  display: block;
+  width: 2.6rem;
+  cursor: pointer;
+}
+
+.pencil-tool-container {
+  display: none;
+  height: 4rem;
+  width: 7rem;
+  position: absolute;
+  top: 5rem;
+  left: 29.2vw;
+  background-color: #e3e6ea;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-radius: 10px;
+}
+
+.pencil-width-container {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pencil-width-container input {
+  width: 80%;
+}
+
+.pencil-color-container {
+  height: calc(100% - 2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pencil-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
+.black {
+  background-color: black;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.eraser-tool-container {
+  height: 2rem;
+  width: 6rem;
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 5rem;
+  left: 36.8vw;
+  background-color: #e3e6ea;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-radius: 10px;
+}
+
+.eraser-width-container {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eraser-width-container input {
+  width: 80%;
 }
