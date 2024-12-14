@@ -7,6 +7,7 @@ let eraserToolContainer = document.querySelector('.eraser-tool-container')
 let pencil = document.querySelector('.pencil')
 let eraser = document.querySelector('.eraser')
 let sticky = document.querySelector('.sticky')
+let upload = document.querySelector('.upload')
 
 let pencilFlag = false
 let eraserFlag = false
@@ -69,17 +70,103 @@ eraser.addEventListener('click', () => {
 })
 
 sticky.addEventListener('click', (e) => {
-  let stickyContainer = document.createElement('div')
-  stickyContainer.setAttribute('class', 'sticky-container')
-  stickyContainer.innerHTML = ` 
+  let stickyTemplateHTML = ` 
       <div class="header-container">
         <div class="minimize"></div>
         <div class="remove"></div>
       </div>
       <div class="note-container">
-        <textarea></textarea>
+        <textarea spellcheck="false"></textarea>
       </div>
       `
+  createSticky(stickyTemplateHTML)
+})
+
+function stickyNoteActions(stickyContainer, minimize, remove) {
+  remove.addEventListener('click', () => {
+    stickyContainer.remove()
+  })
+
+  minimize.addEventListener('click', () => {
+    let noteContainer = stickyContainer.querySelector('.note-container')
+    let display = getComputedStyle(noteContainer).getPropertyValue('display')
+
+    if (display === 'none') {
+      noteContainer.style.display = 'block'
+    } else {
+      noteContainer.style.display = 'none'
+    }
+  })
+}
+
+function dragAndDrop(element, event) {
+  let shiftX = event.clientX - element.getBoundingClientRect().left
+  let shiftY = event.clientY - element.getBoundingClientRect().top
+
+  element.style.position = 'absolute'
+  element.style.zIndex = 1000
+
+  moveAt(event.pageX, event.pageY)
+
+  // moves the ball at (pageX, pageY) coordinates
+  // taking initial shifts into account
+  function moveAt(pageX, pageY) {
+    element.style.left = pageX - shiftX + 'px'
+    element.style.top = pageY - shiftY + 'px'
+  }
+
+  function onMouseMove(event) {
+    moveAt(event.pageX, event.pageY)
+  }
+
+  // move the ball on mousemove
+  document.addEventListener('mousemove', onMouseMove)
+
+  // drop the ball, remove unneeded handlers
+  element.onmouseup = function () {
+    document.removeEventListener('mousemove', onMouseMove)
+    element.onmouseup = null
+  }
+}
+
+function createSticky(stickyTemplateHTML) {
+  let stickyContainer = document.createElement('div')
+  stickyContainer.setAttribute('class', 'sticky-container')
+  stickyContainer.innerHTML = stickyTemplateHTML
 
   document.body.appendChild(stickyContainer)
+
+  let minimize = stickyContainer.querySelector('.minimize')
+  let remove = stickyContainer.querySelector('.remove')
+  stickyNoteActions(stickyContainer, minimize, remove)
+
+  stickyContainer.onmousedown = function (event) {
+    dragAndDrop(stickyContainer, event)
+  }
+
+  stickyContainer.ondragstart = function () {
+    return false
+  }
+}
+
+upload.addEventListener('click', () => {
+  // Open file explorer
+  let input = document.createElement('input')
+  input.setAttribute('type', 'file')
+  input.click()
+  input.addEventListener('change', (event) => {
+    let file = input.files[0]
+    let url = URL.createObjectURL(file)
+
+    let stickyTemplateHTML = ` 
+      <div class="header-container">
+        <div class="minimize"></div>
+        <div class="remove"></div>
+      </div>
+      <div class="note-container">
+        <img src="${url}"/>
+      </div>
+      `
+    createSticky(stickyTemplateHTML)
+  })
 })
