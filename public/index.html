@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
-      href="./icons/sketchbook-svgrepo-com.svg
-    "
+      href="./sketchbook-svgrepo-com.svg"
       type="image/x-icon"
     />
     <link
@@ -78,7 +77,15 @@
     </div> -->
 
     <canvas></canvas>
-    <script src="./js/script.js"></script>
-    <script src="./js/canvas.js"></script>
+    <script
+      src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+      integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let socket = io.connect('http://localhost:8080');
+    </script>
+    <script src="../UI/tools.js"></script>
+    <script src="../UI/canvas.js"></script>
   </body>
 </html>
