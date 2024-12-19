@@ -31,7 +31,11 @@
       />
       <img class="eraser" src="./icons/eraser-svgrepo-com.svg" alt=eraser-icon"
       />
-      <img src="./icons/download-svgrepo-com.svg" alt="download-icon" />
+      <img
+        class="download"
+        src="./icons/download-svgrepo-com.svg"
+        alt="download-icon"
+      />
       <img
         class="upload"
         src="./icons/add-image-svgrepo-com.svg"
@@ -42,13 +46,13 @@
         src="./icons/notes-note-svgrepo-com.svg"
         alt="note-icon"
       />
-      <img src="./icons/redo-xs-svgrepo-com.svg" alt="redo-icon" />
-      <img src="./icons/undo-xs-svgrepo-com.svg" alt="undo-icon" />
+      <img class="redo" src="./icons/redo-xs-svgrepo-com.svg" alt="redo-icon" />
+      <img class="undo" src="./icons/undo-xs-svgrepo-com.svg" alt="undo-icon" />
     </div>
 
     <div class="pencil-tool-container">
       <div class="pencil-width-container">
-        <input type="range" min="2" max="10" value="3" />
+        <input type="range" min="2" max="10" value="3" class="pencil-width" />
       </div>
       <div class="pencil-color-container">
         <div class="black pencil-color"></div>
@@ -59,19 +63,22 @@
 
     <div class="eraser-tool-container">
       <div class="eraser-width-container">
-        <input type="range" min="2" max="10" value="3" />
+        <input type="range" min="2" max="10" value="3" class="eraser-width" />
       </div>
     </div>
 
-    <div class="sticky-container">
-      <!-- <div class="header-container">
+    <!-- <div class="sticky-container">
+      <div class="header-container">
         <div class="minimize"></div>
         <div class="remove"></div>
       </div>
       <div class="note-container">
         <textarea></textarea>
-      </div> -->
-    </div>
-    <script src="./script.js"></script>
+      </div>
+    </div> -->
+
+    <canvas></canvas>
+    <script src="./js/script.js"></script>
+    <script src="./js/canvas.js"></script>
   </body>
 </html>
