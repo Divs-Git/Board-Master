@@ -1,3 +1,12 @@
+let pencilColorEle = document.querySelectorAll('.pencil-color');
+let pencilWidthEle = document.querySelector('.pencil-width');
+let eraserWidthEle = document.querySelector('.eraser-width');
+
+let pencilColor = 'red';
+let eraserColor = 'white';
+let pencilWidth = pencilWidthEle.value;
+let eraserWidth = eraserWidthEle.value;
+
 let canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -5,8 +14,8 @@ canvas.height = window.innerHeight;
 // browser canvas api
 let tool = canvas.getContext('2d');
 // default value
-tool.strokeStyle = 'red';
-tool.lineWidth = '3';
+tool.strokeStyle = pencilColor;
+tool.lineWidth = pencilWidth;
 
 /*
 mousedown -> start new path
@@ -43,3 +52,31 @@ function drawStroke(strokeObj) {
   tool.lineTo(strokeObj.x, strokeObj.y);
   tool.stroke();
 }
+
+pencilColorEle.forEach((colorEle) => {
+  colorEle.addEventListener('click', () => {
+    let color = colorEle.classList[0];
+    pencilColor = color;
+    tool.strokeStyle = pencilColor;
+  });
+});
+
+pencilWidthEle.addEventListener('change', (event) => {
+  pencilWidth = pencilWidthEle.value;
+  tool.lineWidth = pencilWidth;
+});
+
+eraserWidthEle.addEventListener('change', () => {
+  eraserWidth = eraserWidthEle.value;
+  tool.lineWidth = eraserWidth;
+});
+
+eraser.addEventListener('click', (e) => {
+  if (eraserFlag) {
+    tool.strokeStyle = eraserColor;
+    tool.lineWidth = eraserWidth;
+  } else {
+    tool.strokeStyle = pencilColor;
+    tool.lineWidth = pencilWidth;
+  }
+});
