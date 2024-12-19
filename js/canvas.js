@@ -13,6 +13,8 @@ canvas.height = window.innerHeight;
 
 // browser canvas api
 let tool = canvas.getContext('2d');
+tool.fillStyle = 'white';
+tool.fillRect(0, 0, canvas.width, canvas.height);
 // default value
 tool.strokeStyle = pencilColor;
 tool.lineWidth = pencilWidth;
@@ -35,6 +37,8 @@ canvas.addEventListener('mousemove', (e) => {
     drawStroke({
       x: e.clientX,
       y: e.clientY,
+      color: eraserFlag ? eraserColor : pencilColor,
+      width: eraserFlag ? eraserWidth : pencilWidth,
     });
   }
 });
@@ -50,6 +54,8 @@ function beginPath(strokeObj) {
 
 function drawStroke(strokeObj) {
   tool.lineTo(strokeObj.x, strokeObj.y);
+  tool.strokeStyle = strokeObj.color;
+  tool.lineWidth = strokeObj.width;
   tool.stroke();
 }
 
@@ -79,4 +85,13 @@ eraser.addEventListener('click', (e) => {
     tool.strokeStyle = pencilColor;
     tool.lineWidth = pencilWidth;
   }
+});
+
+// download
+download.addEventListener('click', (event) => {
+  let url = canvas.toDataURL();
+  let element = document.createElement('a');
+  element.href = url;
+  element.download = 'board-master.jpg';
+  element.click();
 });
