@@ -37,7 +37,7 @@ img {
   position: absolute;
   border-radius: 20px;
   top: 1rem;
-  left: 30vw;
+  left: 27vw;
 }
 
 .tools-container > * {
@@ -46,13 +46,39 @@ img {
   cursor: pointer;
 }
 
+.scale-up {
+  animation: scale-up 0.5s ease-in-out forwards;
+}
+
+.scale-down {
+  animation: scale-down 0.5s ease-in-out forwards;
+}
+
+@keyframes scale-up {
+  0% {
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-down {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.1);
+  }
+}
+
 .pencil-tool-container {
   display: none;
   height: 4rem;
   width: 7rem;
   position: absolute;
   top: 5rem;
-  left: 29.2vw;
+  left: 27vw;
   background-color: #e3e6ea;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 10px;
@@ -103,7 +129,7 @@ img {
   justify-content: center;
   align-items: center;
   top: 5rem;
-  left: 36.8vw;
+  left: 34vw;
   background-color: #e3e6ea;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 10px;
@@ -118,4 +144,54 @@ img {
 
 .eraser-width-container input {
   width: 80%;
+}
+
+.sticky-container {
+  height: 15rem;
+  width: 15rem;
+
+  position: absolute;
+  top: 15rem;
+  left: 10rem;
+}
+
+.header-container {
+  height: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #e3e6ea;
+}
+
+.header-container > * {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+}
+
+.minimize {
+  background-color: #2ed573;
+}
+
+.remove {
+  background-color: #d63031;
+}
+
+.note-container {
+  height: calc(100% - 2rem);
+}
+
+.note-container textarea {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note-container img {
+  width: 100%;
+  height: 100%;
 }
