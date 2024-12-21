@@ -1,13 +1,15 @@
 import express from 'express';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
 
-const app = express();
-app.use(express.static('../public'));
-app.use('/UI', express.static('../UI'));
+// serves static file
+const __dirname = path.resolve();
 
+const app = express();
+app.use(express.static(path.join(__dirname, '../public')));
 const PORT = process.env.PORT || 5000;
 let server = app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
