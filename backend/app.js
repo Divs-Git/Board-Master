@@ -2,20 +2,38 @@ import express from 'express';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
 import path from 'path';
+import cors from 'cors';
 
 dotenv.config();
 
-// serves static file
-const __dirname = path.resolve();
-
 const app = express();
+
+// Enable CORS
+app.use(
+  cors({
+    origin: 'https://board-master.onrender.com',
+    methods: ['GET', 'POST'],
+    credentials: true,
+  })
+);
+
+// Serve static files
+const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, 'public')));
+
 const PORT = process.env.PORT || 5000;
 let server = app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
 
-let io = new Server(server);
+// Initialize Socket.IO
+let io = new Server(server, {
+  cors: {
+    origin: 'https://board-master.onrender.com',
+    methods: ['GET', 'POST'],
+  },
+});
+
 io.on('connection', (socket) => {
   console.log('socket connection successfully');
 
