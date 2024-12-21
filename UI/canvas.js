@@ -31,20 +31,22 @@ mousedown -> start new path
 let mousedown = false;
 canvas.addEventListener('mousedown', (e) => {
   mousedown = true;
-  beginPath({
+  let data = {
     x: e.clientX,
     y: e.clientY,
-  });
+  };
+  socket.emit('beginPath', data);
 });
 
 canvas.addEventListener('mousemove', (e) => {
   if (mousedown) {
-    drawStroke({
+    let data = {
       x: e.clientX,
       y: e.clientY,
       color: eraserFlag ? eraserColor : pencilColor,
       width: eraserFlag ? eraserWidth : pencilWidth,
-    });
+    };
+    socket.emit('drawStroke', data);
   }
 });
 
@@ -60,28 +62,26 @@ canvas.addEventListener('mouseup', (e) => {
 undo.addEventListener('click', (event) => {
   if (track > 0) {
     track--;
+    // track operation
+    let data = {
+      undoRedoTracker,
+      track,
+    };
+    socket.emit('undoRedo', data);
   }
-
-  // track operation
-  let trackObj = {
-    undoRedoTracker,
-    track,
-  };
-  undoRedoCanvas(trackObj);
 });
 
 // redo
 redo.addEventListener('click', (event) => {
   if (track < undoRedoTracker.length - 1) {
     track++;
+    // track operation
+    let data = {
+      undoRedoTracker,
+      track,
+    };
+    socket.emit('undoRedo', data);
   }
-
-  // track operation
-  let trackObj = {
-    undoRedoTracker,
-    track,
-  };
-  undoRedoCanvas(trackObj);
 });
 
 function undoRedoCanvas({ track, undoRedoTracker }) {
@@ -140,4 +140,17 @@ download.addEventListener('click', (event) => {
   element.href = url;
   element.download = 'board-master.jpg';
   element.click();
+});
+
+// Recieved from server
+socket.on('beginPath', (data) => {
+  beginPath(data);
+});
+
+socket.on('drawStroke', (data) => {
+  drawStroke(data);
+});
+
+socket.on('undoRedo', (data) => {
+  undoRedoCanvas(data);
 });
